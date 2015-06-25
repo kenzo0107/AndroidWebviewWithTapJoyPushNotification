@@ -26,7 +26,7 @@ In this repository , the <package_name> is the `jp.mameko.com.webview`.
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Light.NoTitleBar">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -39,6 +39,7 @@ In this repository , the <package_name> is the `jp.mameko.com.webview`.
     </application>
 
 </manifest>
+
 ```
 
 * app/res/layout//activity_main.xml
@@ -48,10 +49,10 @@ In this repository , the <package_name> is the `jp.mameko.com.webview`.
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:paddingLeft="@dimen/activity_horizontal_margin"
-android:paddingRight="@dimen/activity_horizontal_margin"
-android:paddingTop="@dimen/activity_vertical_margin"
-android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="0px"
+android:paddingRight="0px"
+android:paddingTop="0px"
+android:paddingBottom="0px"
 tools:context="jp.mameko.com.webview.app.MainActivity">
 
 <WebView
@@ -67,17 +68,14 @@ tools:context="jp.mameko.com.webview.app.MainActivity">
 ```
 package jp.mameko.com.webview;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import org.w3c.dom.Text;
-
-
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +124,7 @@ myWebView.loadUrl("http://www10471uo.sakura.ne.jp/mameko/webroot/webview/");
 
 ## Build Run Application
 
-![Webview](http://i.imgur.com/dQybnM6.png?1)
+![Webview](http://i.imgur.com/aycPSnY.png)
 
 
 That's all !
