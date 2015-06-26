@@ -7,7 +7,16 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.tapjoy.TJConnectListener;
+import com.tapjoy.Tapjoy;
+import com.tapjoy.TapjoyConnectFlag;
+
+
 public class MainActivity extends Activity {
+
+    // TapJoy sdkKey.
+    final private static String tapJoysdkKey   = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    final private static String tapJoysenderID = "xxxxxxxxxx";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +29,18 @@ public class MainActivity extends Activity {
         myWebView.getSettings().setJavaScriptEnabled(true);
         // アプリ起動時に読み込むURL
         myWebView.loadUrl("http://www10471uo.sakura.ne.jp/mameko/webroot/webview/");
+
+
+        final boolean connect = Tapjoy.connect(getApplicationContext(), tapJoysdkKey, TapjoyConnectFlag.CONNECT_FLAG_DEFAULTS, new TJConnectListener() {
+            @Override
+            public void onConnectSuccess() {
+                Tapjoy.setGcmSender(tapJoysenderID);
+            }
+
+            @Override
+            public void onConnectFailure() {}
+        });
+        Tapjoy.setDebugEnabled(true); //Do not set this for apps released to a store!
     }
 
 
@@ -43,5 +64,17 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Tapjoy.startSession();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Tapjoy.endSession();
     }
 }
